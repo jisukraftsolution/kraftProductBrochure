@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KRAFT 소개자료</title>
+  <title>KRAFT</title>
 
   <style>
     * {
@@ -58,8 +58,9 @@
 </head>
 <body>
   <div class="header">
-    <div class="title">KRAFT 소개자료</div>
+    <div class="title" id="title">KRAFT 소개자료</div>
     <a
+      id="downloadBtn"
       class="download-btn"
       href="https://docs.google.com/presentation/d/1t8gK5NIxNX00CniZvBGaCCU75SAcEB0u/export/pptx"
     >
@@ -71,5 +72,36 @@
     src="https://docs.google.com/presentation/d/1t8gK5NIxNX00CniZvBGaCCU75SAcEB0u/embed?start=false&loop=false&delayms=3000"
     allowfullscreen>
   </iframe>
+
+  <script>
+    const lang = navigator.language || navigator.userLanguage;
+
+    const texts = {
+      ko: {
+        title: "KRAFT 소개자료",
+        button: "PPT 다운로드"
+      },
+      ja: {
+        title: "KRAFT 紹介資料",
+        button: "PPTをダウンロード"
+      },
+      en: {
+        title: "KRAFT Introduction",
+        button: "Download PPT"
+      }
+    };
+
+    let locale = "en";
+
+    if (lang.startsWith("ko")) {
+      locale = "ko";
+    } else if (lang.startsWith("ja")) {
+      locale = "ja";
+    }
+
+    document.getElementById("title").innerText = texts[locale].title;
+    document.getElementById("downloadBtn").innerText = texts[locale].button;
+    document.documentElement.lang = locale;
+  </script>
 </body>
 </html>

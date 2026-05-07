@@ -34,10 +34,11 @@
       margin-bottom: 12px;
     }
 
-    .title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #111827;
+    .logo {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
 
     #languageSelect {
@@ -96,7 +97,11 @@
 <body>
   <div class="header">
     <div class="top-row">
-      <div class="title" id="title">KRAFT 소개자료</div>
+      <img
+        src="./logo4.png"
+        alt="KRAFT"
+        class="logo"
+      />
 
       <select id="languageSelect">
         <option value="ko">KO</option>
@@ -143,20 +148,12 @@
       en: "https://docs.google.com/presentation/d/e/2PACX-1vR19Tysg2EOyP_tZScSZcEX9u-gczNemD6QqI8jL8aOFtq212rAGcDd0LRA0QsLzw/embed?start=false&loop=false&delayms=60000"
     };
 
-    const titles = {
-      ko: "KRAFT 소개자료",
-      ja: "KRAFT 紹介資料",
-      en: "KRAFT Introduction"
-    };
-
     const languageSelect = document.getElementById("languageSelect");
-    const titleEl = document.getElementById("title");
     const slideFrame = document.getElementById("slideFrame");
 
     function applyLocale(locale) {
       if (!embeds[locale]) locale = "en";
 
-      titleEl.innerText = titles[locale];
       slideFrame.src = embeds[locale];
       languageSelect.value = locale;
       document.documentElement.lang = locale;
@@ -164,8 +161,11 @@
 
     let locale = "en";
 
-    if (lang.startsWith("ko")) locale = "ko";
-    else if (lang.startsWith("ja")) locale = "ja";
+    if (lang.startsWith("ko")) {
+      locale = "ko";
+    } else if (lang.startsWith("ja")) {
+      locale = "ja";
+    }
 
     applyLocale(locale);
 

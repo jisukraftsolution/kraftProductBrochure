@@ -30,23 +30,30 @@
     .title {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .download-btn {
       display: inline-block;
-      padding: 12px 20px;
+      padding: 10px 16px;
       background: #111827;
       color: white;
       text-decoration: none;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
     }
 
     iframe {
       width: 100%;
-      height: calc(100vh - 90px);
+      height: calc(100vh - 130px);
       border: none;
       background: white;
     }
@@ -55,9 +62,26 @@
 <body>
   <div class="header">
     <div class="title" id="title">KRAFT 소개자료</div>
-    <a id="downloadBtn" class="download-btn" href="#">
-      PPT 다운로드
-    </a>
+
+    <div class="button-group">
+      <a
+        class="download-btn"
+        href="https://docs.google.com/presentation/d/1Hb928JQ6lB2lxOUqNYVglzMCP8Y7d8VX/export/pptx">
+        국문 버전
+      </a>
+
+      <a
+        class="download-btn"
+        href="https://docs.google.com/presentation/d/15KZ3LmDW4bX9WW5rR_fEpbwUgxWSwU4L/export/pptx">
+        日本語版
+      </a>
+
+      <a
+        class="download-btn"
+        href="https://docs.google.com/presentation/d/176N1dBCol9bSIeJbeL962nU9KlGfQ5qp/export/pptx">
+        English
+      </a>
+    </div>
   </div>
 
   <iframe id="slideFrame" allowfullscreen></iframe>
@@ -65,46 +89,25 @@
   <script>
     const lang = navigator.language || navigator.userLanguage;
 
-    const config = {
-      ko: {
-        title: "KRAFT 소개자료",
-        button: "PPT 다운로드",
-        download:
-          "https://docs.google.com/presentation/d/1Hb928JQ6lB2lxOUqNYVglzMCP8Y7d8VX/export/pptx",
-        embed:
-          "https://docs.google.com/presentation/d/e/2PACX-1vTkv2S4VfBQ8yOizvUNjUZDqnCrumHUveRk0q9M_YiIhG9XMenyCr9hUyS9md3eCQ/embed?start=false&loop=false&delayms=60000"
-      },
-      ja: {
-        title: "KRAFT 紹介資料",
-        button: "PPTをダウンロード",
-        download:
-          "https://docs.google.com/presentation/d/15KZ3LmDW4bX9WW5rR_fEpbwUgxWSwU4L/export/pptx",
-        embed:
-          "https://docs.google.com/presentation/d/e/2PACX-1vQ71injeZrSVZonZ0lrJ_ceP7kmoWWyHWQi9VUM3WX7zZhlaIrMpJd0Lin16f9E7A/embed?start=false&loop=false&delayms=60000"
-      },
-      en: {
-        title: "KRAFT Introduction",
-        button: "Download PPT",
-        download:
-          "https://docs.google.com/presentation/d/176N1dBCol9bSIeJbeL962nU9KlGfQ5qp/export/pptx",
-        embed:
-          "https://docs.google.com/presentation/d/e/2PACX-1vR19Tysg2EOyP_tZScSZcEX9u-gczNemD6QqI8jL8aOFtq212rAGcDd0LRA0QsLzw/embed?start=false&loop=false&delayms=60000"
-      }
+    const embeds = {
+      ko: "https://docs.google.com/presentation/d/e/2PACX-1vTkv2S4VfBQ8yOizvUNjUZDqnCrumHUveRk0q9M_YiIhG9XMenyCr9hUyS9md3eCQ/embed?start=false&loop=false&delayms=60000",
+      ja: "https://docs.google.com/presentation/d/e/2PACX-1vQ71injeZrSVZonZ0lrJ_ceP7kmoWWyHWQi9VUM3WX7zZhlaIrMpJd0Lin16f9E7A/embed?start=false&loop=false&delayms=60000",
+      en: "https://docs.google.com/presentation/d/e/2PACX-1vR19Tysg2EOyP_tZScSZcEX9u-gczNemD6QqI8jL8aOFtq212rAGcDd0LRA0QsLzw/embed?start=false&loop=false&delayms=60000"
     };
 
     let locale = "en";
 
     if (lang.startsWith("ko")) {
       locale = "ko";
+      document.getElementById("title").innerText = "KRAFT 소개자료";
     } else if (lang.startsWith("ja")) {
       locale = "ja";
+      document.getElementById("title").innerText = "KRAFT 紹介資料";
+    } else {
+      document.getElementById("title").innerText = "KRAFT Introduction";
     }
 
-    document.getElementById("title").innerText = config[locale].title;
-    document.getElementById("downloadBtn").innerText = config[locale].button;
-    document.getElementById("downloadBtn").href = config[locale].download;
-    document.getElementById("slideFrame").src = config[locale].embed;
-    document.documentElement.lang = locale;
+    document.getElementById("slideFrame").src = embeds[locale];
   </script>
 </body>
 </html>

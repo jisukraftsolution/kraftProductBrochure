@@ -59,35 +59,40 @@
 <body>
   <div class="header">
     <div class="title" id="title">KRAFT 소개자료</div>
-    <a
-      id="downloadBtn"
-      class="download-btn"
-      href="https://docs.google.com/presentation/d/1t8gK5NIxNX00CniZvBGaCCU75SAcEB0u/export/pptx"
-    >
+    <a id="downloadBtn" class="download-btn" href="#">
       PPT 다운로드
     </a>
   </div>
 
-  <iframe
-    src="https://docs.google.com/presentation/d/1t8gK5NIxNX00CniZvBGaCCU75SAcEB0u/embed?start=false&loop=false&delayms=3000"
-    allowfullscreen>
-  </iframe>
+  <iframe id="slideFrame" allowfullscreen></iframe>
 
   <script>
     const lang = navigator.language || navigator.userLanguage;
 
-    const texts = {
+    const config = {
       ko: {
         title: "KRAFT 소개자료",
-        button: "PPT 다운로드"
+        button: "PPT 다운로드",
+        download:
+          "https://docs.google.com/presentation/d/1Hb928JQ6lB2lxOUqNYVglzMCP8Y7d8VX/export/pptx",
+        embed:
+          "https://docs.google.com/presentation/d/1Hb928JQ6lB2lxOUqNYVglzMCP8Y7d8VX/embed?start=false&loop=false&delayms=3000"
       },
       ja: {
         title: "KRAFT 紹介資料",
-        button: "PPTをダウンロード"
+        button: "PPTをダウンロード",
+        download:
+          "https://docs.google.com/presentation/d/15KZ3LmDW4bX9WW5rR_fEpbwUgxWSwU4L/export/pptx",
+        embed:
+          "https://docs.google.com/presentation/d/15KZ3LmDW4bX9WW5rR_fEpbwUgxWSwU4L/embed?start=false&loop=false&delayms=3000"
       },
       en: {
         title: "KRAFT Introduction",
-        button: "Download PPT"
+        button: "Download PPT",
+        download:
+          "https://docs.google.com/presentation/d/176N1dBCol9bSIeJbeL962nU9KlGfQ5qp/export/pptx",
+        embed:
+          "https://docs.google.com/presentation/d/176N1dBCol9bSIeJbeL962nU9KlGfQ5qp/embed?start=false&loop=false&delayms=3000"
       }
     };
 
@@ -99,8 +104,10 @@
       locale = "ja";
     }
 
-    document.getElementById("title").innerText = texts[locale].title;
-    document.getElementById("downloadBtn").innerText = texts[locale].button;
+    document.getElementById("title").innerText = config[locale].title;
+    document.getElementById("downloadBtn").innerText = config[locale].button;
+    document.getElementById("downloadBtn").href = config[locale].download;
+    document.getElementById("slideFrame").src = config[locale].embed;
     document.documentElement.lang = locale;
   </script>
 </body>
